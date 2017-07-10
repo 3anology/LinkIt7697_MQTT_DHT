@@ -49,12 +49,12 @@ void loop() {
 
   long now = millis();
 //DHT
-    int h = dht.readHumidity();
-    int t = dht.readTemperature();
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
     char temp[75];
-    sprintf(temp, "%d", t);
+    sprintf(temp, "%3.2f", t);
     char hum[75];
-    sprintf(hum, "%d", h);
+    sprintf(hum, "%3.2f", h);
     
   
   if (now - lastMsg > 2000) {
@@ -70,6 +70,16 @@ void loop() {
     //client.publish("t4", "hello world");
     client.publish(temp_topic,temp);
     client.publish(hum_topic,hum);
+    
+    Serial.println("Publish message: ");
+    Serial.print("Room Humidity: "); 
+    Serial.print(hum);
+    Serial.print(" %\t");
+    Serial.print("Room Temperature: "); 
+    Serial.print(temp);
+    Serial.println(" *C");    
+    
+
     Serial.print(temp_topic);
     Serial.print(":");
     Serial.println(temp);
