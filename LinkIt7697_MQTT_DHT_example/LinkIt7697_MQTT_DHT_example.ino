@@ -3,7 +3,7 @@
 //DHT
 #include "DHT.h"
 #define DHTPIN A0     // what pin we're connected to
-#define DHTTYPE DHT11   // DHT 22  (AM2302)
+#define DHTTYPE DHT22   // DHT 22  (AM2302)
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -14,6 +14,7 @@ char mqtt_server[] = "MQTT Broker IP address";
 char sub_topic[] = "7697 subscribe topic";
 char pub_topic[] = "7697 publish topic";
 char client_Id[] = "7697client-01-";
+char pub_msg[] = "hello world!";
 char temp_topic[] = "7697-Temp";
 char hum_topic[] = "7697-Hum";
  
@@ -56,18 +57,13 @@ void loop() {
     char hum[75];
     sprintf(hum, "%d", h);
     
-  
   if (now - lastMsg > 2000) {
     lastMsg = now;
     ++value;
 
-    Serial.print("Publish message ");
-    Serial.println(msg);
    
 //DHT
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    //client.publish("t4", "hello world");
+    Serial.println("Publish message: ");
     client.publish(temp_topic,temp);
     client.publish(hum_topic,hum);
     Serial.print(temp_topic);
@@ -82,7 +78,7 @@ void setup_wifi() {
    // attempt to connect to Wifi network:
    Serial.print("Attempting to connect to SSID: ");
    Serial.println(ssid);
-   WiFi.begin(ssid);
+   WiFi.begin(ssid,password);
    while (WiFi.status() != WL_CONNECTED) {
      delay(500);
      Serial.print(".");
