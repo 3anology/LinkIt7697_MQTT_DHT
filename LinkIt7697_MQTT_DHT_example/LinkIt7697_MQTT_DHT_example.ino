@@ -1,23 +1,3 @@
-/*
-  Web client
-
-  This sketch connects to a website (http://download.labs.mediatek.com)
-  using LinkIt 7697
-
-  This example is written for a network using WPA encryption. For
-  WEP or WPA, change the Wifi.begin() call accordingly.
-
-  Circuit:
-  * LinkIt 7697
-
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 31 May 2012
-  by Tom Igoe
-  modified Jan 2017
-  by MediaTek Labs
-*/
-
 #include <LWiFi.h>
 #include <PubSubClient.h>
 //DHT
